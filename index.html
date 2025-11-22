@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Muhammad Hikam Badriddujaa</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Konfigurasi Tailwind (Dibutuhkan di <head>) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#0f172a',
+                        'secondary-dark': '#1e293b',
+                        'primary-light': '#f7fafc',
+                        'secondary-light': '#edf2f7',
+                        'accent-neon': '#00ffff', // Neon Cyan (Tema Gelap)
+                        'accent-dark': '#1a202c', // Warna Hitam/Gelap (Tema Terang)
+                        'accent-blue': '#4c51bf', // Warna Aksen Biru Profesional (Tidak terpakai, diganti accent-dark)
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Link ke berkas CSS eksternal -->
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body class="dark-theme">
+
+    <!-- Animasi Latar Belakang 3D Canvas -->
+    <canvas id="three-canvas"></canvas>
+
+    <!-- Navigasi Bar -->
+    <nav class="sticky top-0 z-40 p-4 shadow-lg transition duration-500" id="navbar">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold transition-colors" id="nav-brand-text">Portofolio</a>
+
+            <div class="flex items-center space-x-4">
+                <!-- Tombol Ganti Tema -->
+                <button id="theme-toggle" class="p-2 rounded-full transition-colors hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2">
+                    <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg id="moon-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+
+                <!-- Menu Navigasi -->
+                <div class="hidden md:flex space-x-6 text-lg font-medium">
+                    <a href="#home" class="hover:text-accent-neon transition-colors duration-300 link-text">Home</a>
+                    <a href="#about" class="hover:text-accent-neon transition-colors duration-300 link-text">About Me</a>
+                    <a href="#skills" class="hover:text-accent-neon transition-colors duration-300 link-text">Skills</a>
+                    <a href="#projects" class="hover:text-accent-neon transition-colors duration-300 link-text">Project</a>
+                    <a href="#contact" class="hover:text-accent-neon transition-colors duration-300 link-text">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <!-- Bagian Beranda (Home) -->
+        <section id="home" class="min-h-screen flex items-center justify-center pt-20" style="padding-top: 5rem;">
+            <div class="text-center max-w-4xl p-6 rounded-xl shadow-2xl transition duration-500 card-style" id="home-card">
+                <div class="w-40 h-40 mx-auto mb-6 bg-gray-400 rounded-full overflow-hidden border-4 border-accent-neon/50" id="profile-border">
+                    <img src="img/profile.jpg" alt="Foto Profil" class="object-cover w-full h-full" onerror="this.onerror=null;this.src='profile.jpg'">
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight">Muhammad Hikam Badriddujaa</h1>
+                <p class="text-2xl md:text-3xl font-light mb-8 text-accent-neon" id="home-subtitle">Mahasiswa Baru Universitas Airlangga, D4 Teknik Informatika</p>
+                <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                    <a href="#about" class="px-8 py-3 rounded-full text-lg font-semibold bg-accent-neon text-primary-dark shadow-lg hover:shadow-xl hover:bg-cyan-500 transition duration-300" id="home-main-button">
+                        Kenali Saya Lebih Lanjut
+                    </a>
+                    <a href="#contact" class="px-8 py-3 rounded-full text-lg font-semibold border-2 transition duration-300" id="home-contact-button">
+                        Kontak
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Tentang Saya (About) -->
+        <section id="about" class="py-20 md:py-32">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12" id="about-title">About Me</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="p-6 rounded-xl shadow-lg transition duration-500 card-style" id="about-card">
+                    <p class="text-xl leading-relaxed mb-4">
+                        Saya adalah Muhammad Hikam Badriddujaa, seorang Mahasiswa Baru di Universitas Airlangga (UNAIR).
+                        Saat ini saya sedang mengejar ilmu di bidang yang relevan dengan perkembangan teknologi masa kini, fokus pada rekayasa sistem yang efisien.
+                    </p>
+                    <p class="text-xl leading-relaxed">
+                        Sebelum melangkah ke jenjang perguruan tinggi, saya merupakan lulusan dari SMK Antartika 2 Sidoarjo, Jurusan Rekayasa Perangkat Lunak (RPL). Pengalaman di RPL membekali saya dengan dasar-dasar pemrograman, pengembangan web, dan logika berpikir sistematis.
+                    </p>
+                </div>
+                <div class="p-6 rounded-xl shadow-lg transition duration-500 card-style" id="education-card">
+                    <h3 class="text-2xl font-semibold mb-4 text-accent-neon" id="education-title">Riwayat Pendidikan</h3>
+                    <ul class="space-y-4 text-lg">
+                        <li class="border-b pb-2 border-gray-600/50" id="list-item-1">
+                            <span class="font-bold">Universitas Airlangga (UNAIR)</span><br>
+                            <span class="text-sm italic">Mahasiswa Baru, 2025 - Sekarang</span>
+                        </li>
+                        <li class="border-b pb-2 border-gray-600/50" id="list-item-2">
+                            <span class="font-bold">SMK Antartika 2 Sidoarjo</span><br>
+                            <span class="text-sm italic">Jurusan Rekayasa Perangkat Lunak (RPL), 2022-2025</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Keahlian (Skills) -->
+        <section id="skills" class="py-20 md:py-32">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12" id="skills-title">Keahlian (Skills)</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 max-w-4xl mx-auto">
+                <!-- Contoh Keahlian RPL -->
+                <div class="p-4 rounded-xl text-center shadow-lg transition duration-500 hover:scale-105 card-style" id="skill-card-1">
+                    <div class="text-4xl mb-2 text-accent-neon skill-icon">💾</div>
+                    <span class="font-semibold text-lg">Database Design</span>
+                    <p class="text-sm">MySQL, PostgreSQL</p>
+                </div>
+                <div class="p-4 rounded-xl text-center shadow-lg transition duration-500 hover:scale-105 card-style" id="skill-card-2">
+                    <div class="text-4xl mb-2 text-accent-neon skill-icon">💻</div>
+                    <span class="font-semibold text-lg">Logic & Algo</span>
+                    <p class="text-sm">Python, JavaScript</p>
+                </div>
+                <div class="p-4 rounded-xl text-center shadow-lg transition duration-500 hover:scale-105 card-style" id="skill-card-3">
+                    <div class="text-4xl mb-2 text-accent-neon skill-icon">⚙️</div>
+                    <span class="font-semibold text-lg">Front-End</span>
+                    <p class="text-sm">HTML5, Tailwind CSS</p>
+                </div>
+                <div class="p-4 rounded-xl text-center shadow-lg transition duration-500 hover:scale-105 card-style dark-theme-bg">
+                    <div class="text-4xl mb-2 skill-icon">🚀</div> <!-- Mengganti ikon -->
+                    <span class="font-semibold text-lg">Back-End</span>
+                    <p class="text-sm opacity-70">PHP, Node.js</p>
+                </div>
+                <div class="p-4 rounded-xl text-center shadow-lg transition duration-500 hover:scale-105 card-style" id="skill-card-5">
+                    <div class="text-4xl mb-2 text-accent-neon skill-icon">💡</div>
+                    <span class="font-semibold text-lg">Problem Solving</span>
+                    <p class="text-sm">Debugging & Analisis</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Proyek (Projects) -->
+        <section id="projects" class="py-20 md:py-32">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12" id="projects-title">Project </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Proyek 1: Aplikasi Kasir (RPL Project) -->
+                <div class="p-6 rounded-xl shadow-xl transition duration-500 hover:ring-2 hover:ring-accent-neon project-card" id="project-card-1">
+                    <h3 class="text-2xl font-semibold mb-3 text-accent-neon project-title">Aplikasi Sekolah (RPL Project)</h3>
+                    <p class="text-base mb-4 opacity-80">
+                        Proyek akhir di SMK. Menggunakan PHP dan MySQL untuk mengelola data guru, data siswa, laporan peminjaman, dan laporan pengembalian. Menekankan pada efisiensi database dan antarmuka yang mudah digunakan.
+                    </p>
+                </div>
+                <!-- Proyek 2: Website Portofolio Responsif -->
+                <div class="p-6 rounded-xl shadow-xl transition duration-500 hover:ring-2 hover:ring-accent-neon project-card" id="project-card-2">
+                    <h3 class="text-2xl font-semibold mb-3 text-accent-neon project-title">Website Edukasi Responsif</h3>
+                    <p class="text-base mb-4 opacity-80">
+                        Membuat website Edukasi modern menggunakan HTML, Tailwind CSS, dan JavaScript. Fokus pada desain responsif, edukasi masyarakat di Indonesia, optimasi performa, dan fitur ganti tema.
+                    </p>
+                </div>
+                <!-- Proyek 3: Platform Belajar Bahasa Indonesia -->
+                <div class="p-6 rounded-xl shadow-xl transition duration-500 hover:ring-2 hover:ring-accent-neon project-card" id="project-card-3">
+                    <h3 class="text-2xl font-semibold mb-3 text-accent-neon project-title">Platform Belajar Bahasa Indonesia</h3>
+                    <p class="text-base mb-4 opacity-80">
+                        Mengembangkan platform interaktif berbasis web untuk memudahkan siswa mempelajari kaidah Bahasa Indonesia, seperti PUEBI, struktur teks, dan jenis-jenis paragraf, dengan visualisasi dan kuis.
+                    </p>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                 <a href="https://github.com/Hikam-TI" target="_blank" class="px-8 py-3 rounded-full text-lg font-semibold bg-gray-600 text-white shadow-lg hover:shadow-xl hover:bg-gray-700 transition duration-300">
+                        Lihat Semua di GitHub &rarr;
+                    </a>
+            </div>
+        </section>
+
+        <!-- Bagian Kontak -->
+        <section id="contact" class="py-20 md:py-32">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12" id="contact-title">Contact </h2>
+            <div class="max-w-xl mx-auto p-8 rounded-xl shadow-2xl transition duration-500 card-style" id="contact-card">
+                <p class="text-center text-lg mb-6">
+                    Contact dan akun GitHub saya untuk informasi lebih lanjut.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <span class="p-3 rounded-full bg-accent-neon text-primary-dark contact-icon-bg">
+                            <svg class="w-6 h-6 contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </span>
+                        <a href="mailto:hikambadriddujaa22@gmail.com" class="text-lg hover:text-accent-neon transition-colors duration-300 contact-link">hikambadriddujaa22@gmail.com </a>
+                    </div>
+                    <!-- Nomor Telepon Ditambahkan -->
+                    <div class="flex items-center space-x-4">
+                        <span class="p-3 rounded-full bg-accent-neon text-primary-dark contact-icon-bg">
+                            <svg class="w-6 h-6 contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        </span>
+                        <!-- Gunakan tel: link -->
+                        <a href="https://wa.me/6282230425429" target="_blank" class="text-lg hover:text-accent-neon transition-colors duration-300 contact-link">082230425429 </a>
+                    </div>
+                    <!-- Tautan GitHub -->
+                    <div class="flex items-center space-x-4">
+                        <span class="p-3 rounded-full bg-accent-neon text-primary-dark contact-icon-bg">
+                            <svg class="w-6 h-6 contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </span>
+                        <a href="https://github.com/Hikam-TI" target="_blank" class="text-lg hover:text-accent-neon transition-colors duration-300 contact-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="p-6 text-center text-sm transition duration-500" id="footer">
+        <p>&copy; 2025 Muhammad Hikam Badriddujaa. Portofolio MEDINFO</p>
+    </footer>
+
+    <!-- Load Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Link ke berkas JavaScript eksternal -->
+    <script src="script.js"></script>
+</body>
+</html>
